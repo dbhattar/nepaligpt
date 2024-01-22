@@ -10,76 +10,23 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import axios from 'axios';
+import SimilarityUI from './SimilarityUI';
+import FindSimilarUI from './FindSimilarUI';
+import WordAlgebraUI from './WordAlgebraUI';
 
-function MainUI() {
-  const [similarity, setSimilarity] = useState("none");
-
-  let word1 = "", word2 = "";
-  function findSimilarity(e)
+function MainUI({state}) {
+  switch(state)
   {
-    axios.post('http://127.0.0.1:5000/findsimilarity',
-      {
-        firstWord: word1,
-        secondWord: word2
-      })
-      .then(res => setSimilarity(res.data));
+    case 0:
+      return <SimilarityUI state={state} />
+    case 1:
+      return <FindSimilarUI state={state} />
+    case 2:
+      return <WordAlgebraUI state={state} />
+    default:
+      break;
   }
-
-  function onWord1Change(e)
-  {
-    word1 = e.target.value;
-  }
-
-  function onWord2Change(e)
-  {
-    word2 = e.target.value
-  }
-
-  return (
-    <CssVarsProvider>
-      <Stack
-        justifyContent="center"
-        alignItems="center"
-        spacing={4}
-      >
-        <Stack
-          direction="row"
-          justifyContent="center"
-          alignItems="center"
-          spacing={4}
-        >
-          <FormControl>
-            <FormLabel>First Word</FormLabel>
-            <Input
-              // html input attribute
-              name="word1"
-              type="text"
-              placeholder="First word"
-              onChange = {onWord1Change}
-            />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Second Word</FormLabel>
-            <Input
-              name="word2"
-              type="text"
-              placeholder="Second word"
-              onChange = {onWord2Change}
-            />
-          </FormControl>
-          <Button
-            sx={{mt: 1 /* margin top */ }}
-            onClick= {findSimilarity}
-          >
-            Find Similarity
-          </Button>
-        </Stack>
-        <Typography level="h4" component="h1">
-          Similarity: {similarity}
-        </Typography>        
-      </Stack>
-    </CssVarsProvider>
-  )  
+  return null;
 }
 
 export default MainUI;

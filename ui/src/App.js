@@ -10,20 +10,23 @@ import Link from '@mui/joy/Link';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import LoginUI from './LoginUI';
 import MainUI from './MainUI';
+import Toolbar from './Toolbar';
 
 function App() {
-  return MainUI();
-/*
-  function sayHello() {
-    alert('Hello!');
+  const [uiState, setUIState] = React.useState(0);
+
+  function onToolbarClick(id) {
+    setUIState(id);
   }
   
   return (
-    <button onClick={sayHello}>
-      Click me!
-    </button>
-  );
-*/
+    <Stack
+      spacing={4}
+    >
+      <Toolbar onClick={onToolbarClick} />
+      <MainUI state={uiState} />
+    </Stack>
+  )
 }
 
 export default App;

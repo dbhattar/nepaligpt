@@ -1,0 +1,1 @@
+Since 'nepali_embeddings_word2vec.txt' is bigger than the size limit allowed by github, it is not included in the repository.

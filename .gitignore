@@ -5,3 +5,6 @@
 
 # misc
 .DS_Store
+
+#ignore model file since it is very large in size for Github
+nepali_embeddings_word2vec.txt

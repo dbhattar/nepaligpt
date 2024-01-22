@@ -11,4 +11,4 @@ class NepaliWord2Vec():
         return self.model.similarity(word1, word2)
     
     def word_algebra(self, word1, word2, word3):
-        return self.model.most_similar(positive[word1, word2], negative[word3], topn=1)
+        return self.model.most_similar(positive = [word1, word2], negative = [word3], topn=1)
